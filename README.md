@@ -1,10 +1,12 @@
 # getfiled file generator
 
-Getfiled will appear to be a normal file, but when accessed, will generate the contents of the file on the fly.
+Getfiled will appear to be a normal file, but when accessed, will generate the contents of the file on the fly. Because it's a normal file, programs do not need to be aware that the file is dynamically generated- The only difference would be extra latency when reading the file.
 
-As an example, you could ask getfiled to provide your Nginx configuration, but have it fetch the latest configuration from a central server, like so: `getfiled /etc/nginx.conf "ssh root@master.example.com cat /etc/nginx.conf"`
+As an example, you could ask getfiled to provide your Nginx configuration, but have it fetch the latest configuration from a central server, like so:  
+`getfiled /etc/nginx.conf "ssh root@master.example.com cat /etc/nginx.conf"`  
+The same method could be used to centralize all of your other configurations, like cron, supervisor, etc.
 
-For more complex tasks, you can just have it run a binary, which could have caching/diffing from a server, generate custom configuration files, or anything else.
+For more complex tasks, you can just have it run a binary, which could have caching/diffing from a server, generate custom configuration files, reloading programs, or anything else. Getfiled is byte-friendly, so you can even have other resources such as jpegs or dll's be dynamically generated. If you want your binary to be run often, such as for updating a cached copy, use cron.
 
 # how it works
 
