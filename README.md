@@ -11,3 +11,7 @@ For more complex tasks, you can just have it run a binary, which could have cach
 # how it works
 
 Getfiled is atomic and can be read by hundreds of programs simultaneously. Internally, getfiled created a FIFO with the expected name, and as soon as something reads that FIFO, it renames it and created a new FIFO for the next reader to find and spawns the generator binary. It then points the spawned process's stdout to that FIFO, so the spawned process can take as long as it needs to write, or even write in chunks. Once that process closes, getfiled closes the FIFO.
+
+# future features
+
+It might be useful to implement polling+caching of the generated files as an option. Also, it might be good to run the binary once, and just write a filename to it's STDIN when it needs to generate a file to simplify getfiled, splitting the live-generation to a different binary.
